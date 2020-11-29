@@ -13,14 +13,16 @@ const API = 'http://localhost:3000/initialState'
 const App = () => {
     const initialState = useInitialState(API)
 
-    return video.length === 0 ? <h1>Loading...</h1> :(
+    return initialState.length === 0 ? <h1>Loading...</h1> :(
         <div className="App">
             <Header/>
             <Search/>
             {initialState.mylist.length > 0 &&
             <Categories title = "Mi Lista">
                 <Carousel>
-                    <CarouselItem/>
+                    {initialState.mylist.map(item =>
+                        <CarouselItem key={item.id} {...item}/>
+                    )}
                 </Carousel>
             </Categories>
 
@@ -35,9 +37,9 @@ const App = () => {
 
             <Categories title = "Lo Mejor de Todo">
                 <Carousel>
-                    <CarouselItem/>
-                    <CarouselItem/>
-                    <CarouselItem/>
+                    {initialState.originals.map(item =>
+                        <CarouselItem key={item.id} {...item}/>
+                    )}
                 </Carousel>
             </Categories>
 
