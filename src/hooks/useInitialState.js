@@ -12,6 +12,4 @@ const useInitialState = (API) => {
     return videos
 }
 
-
-hhjhh
 export default useInitialState;
