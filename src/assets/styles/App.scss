@@ -5,6 +5,7 @@ body{
   margin: 0px;
   background-color: $main-color;
   font-family: $theme-font;   
+  color: white;
 }
 @mixin flex{
   display: flex;

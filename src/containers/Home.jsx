@@ -1,49 +1,55 @@
-
-import Header from '../components/Header';
+import React from 'react'
 import Search from '../components/Search';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import '../assets/styles/App.scss';
-import Footer from '../components/Footer';
-import useInitialState from '../hooks/useInitialState';
+import { connect } from 'react-redux';
 
-const API = 'http://localhost:3000/initialState'
 
-const Home = () => {
-    const initialState = useInitialState(API)
+const Home = ({myList, trends, originals}) => {
 
-    return video.length === 0 ? <h1>Loading...</h1>:(
-        <div className="App">
-            <Header/>
+    return (
+        <>  
             <Search/>
-            {initialState.mylist.length > 0 &&
+            {myList.length > 0 &&
             <Categories title = "Mi Lista">
                 <Carousel>
-                    <CarouselItem/>
+                    {myList.map(item =>
+                        <CarouselItem 
+                        key={item.id} 
+                        {...item}
+                        isList
+                        />
+                    )}
                 </Carousel>
             </Categories>
-
             }
             <Categories title = "Trents">
                 <Carousel>
-                    {initialState.trends.map(item =>
+                    {trends.map(item =>
                         <CarouselItem key={item.id} {...item}/>
                     )}
                 </Carousel>
             </Categories>
 
-            <Categories title = "Lo Mejor de Todo">
+            <Categories title = "Originals">
                 <Carousel>
-                    <CarouselItem/>
-                    <CarouselItem/>
-                    <CarouselItem/>
+                    {originals.map(item =>
+                        <CarouselItem key={item.id} {...item}/>
+                    )}
                 </Carousel>
             </Categories>
-
-            <Footer/>
-        </div>
-)
+        </>
+    );
 }
 
-export default Home
+const mapStateToProps = state => {
+    return {
+        myList: state.myList,
+        trends: state.trends,
+        originals: state.originals
+    }
+}
+
+export default connect(mapStateToProps, null)(Home);
