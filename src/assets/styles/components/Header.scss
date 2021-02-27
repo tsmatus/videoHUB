@@ -6,6 +6,11 @@
     justify-content: space-between;
     top: 0px;
     width: 100%;
+    background-color: black;
+  }
+
+  .isLogin, .isRegister {
+    background-color: #131112;
   }
   
   .header__img {
@@ -53,4 +58,6 @@
   .header__menu--profile img {
     margin-right: 8px;
     width: 40px;
+    border-radius: 100%;
+    object-fit: cover;
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import {createStore} from 'redux';
+import {createStore, compose} from 'redux';
 import reducer from './reducers/index';
 import App from './routes/App';
 
@@ -20,9 +20,9 @@ const initialState = {
         "year": 2009,
         "contentRating": "16+",
         "duration": 164,
-        "cover": "http://dummyimage.com/800x600.png/99118E/ffffff",
+        "cover": "https://images.pexels.com/photos/4889486/pexels-photo-4889486.jpeg?cs=srgb&dl=pexels-dih-andr%C3%A9a-4889486.jpg&fm=jpg",
         "description": "Vestibulum ac est lacinia nisi venenatis tristique",
-        "source": "https://mdstrm.com/video/58333e214ad055d208427db5.mp4"
+        "source": "https://vod-progressive.akamaized.net/exp=1609028595~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F3965%2F17%2F444828749%2F1949638811.mp4~hmac=a003054b1f83dc88066134f2656bda3e17040d403a4bfba7ca827163d122c32e/vimeo-prod-skyfire-std-us/01/3965/17/444828749/1949638811.mp4?filename=production+ID%3A5035833.mp4" 
     },
     {
         "id": 3,
@@ -33,9 +33,9 @@ const initialState = {
         "year": 2002,
         "contentRating": "16+",
         "duration": 137,
-        "cover": "http://dummyimage.com/800x600.png/302140/ffffff",
+        "cover": "https://images.pexels.com/photos/6190858/pexels-photo-6190858.jpeg?cs=srgb&dl=pexels-askar-abayev-6190858.jpg&fm=jpg",
         "description": "Vestibulum ac est lacinia nisi venenatis tristique",
-        "source": "https://mdstrm.com/video/58333e214ad055d208427db5.mp4"
+        "source": "https://stream.mux.com/tgzhDzPNfO1D3YWzAx6KYc73uXan8YuQ/high.mp4?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InQ5UHZucm9ZY0hQNjhYSmlRQnRHTEVVSkVSSXJ0UXhKIn0.eyJleHAiOjE2MDkwMjUxODIsImF1ZCI6InYiLCJzdWIiOiJ0Z3poRHpQTmZPMUQzWVd6QXg2S1ljNzN1WGFuOFl1USJ9.TzssddlfTngGJWFIxSzWWipcH3yVlXnk_okIGpIQh0RDza2VVCOwhbMaLsxOk9DRfR-IQce8aBvI9V0k7Zu3rWcZ-yW7J3xionL_uzRZ6QNNs3fq4t678S0Er_w_sfDbfgRqzWW4TS_wAr6lID8Y1v9wDDiiSMzIejq3Mc3pbXpQQmXLmayOUGz3bHqmvnkRLKP0WxrLFdX7zHvT8fS3-A-uMtCBmzkPp6n4YYmHnF0HLxp5eW-CR5W8WaQF3qSML2hk8JGOPxch03eUKfl4PZdIK6Wt7iK6bnbay2kEdPi_93v6gGRkNh6uIGYTSTPkwbxh3bEXxadz0tv3VJyAbA"
     },
     {
         "id": 4,
@@ -48,7 +48,7 @@ const initialState = {
         "duration": 163,
         "cover": "http://dummyimage.com/800x600.png/5472FF/ffffff",
         "description": "Vestibulum ac est lacinia nisi venenatis tristique",
-        "source": "https://mdstrm.com/video/58333e214ad055d208427db5.mp4"
+        "source": "https://youtu.be/1nydxbGhgv8"
     },
     {
         "id": 5,
@@ -171,8 +171,10 @@ const initialState = {
     }
     ]
 }
+
+const composeEnhancers = window.__REDUX__DEVTOOLS_EXTENSION__ || compose;
   
-const store = createStore(reducer, initialState);
+const store = createStore(reducer, initialState, composeEnhancers);
 
 ReactDOM.render(
     <Provider store={store}>
