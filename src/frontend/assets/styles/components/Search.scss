@@ -1,0 +1,30 @@
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 300px;
+    border-radius: 0px 0px 40px 40px;
+}
+
+.main .isHome {
+    width: 70%;
+}
+
+.main__title {
+    color: white;
+    font-size: 25px;
+
+}
+
+.input {
+    border: 0px ;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    height: 50px;
+    padding: 0px 20px;
+    font-family: 'Muli', sans-serif;
+    width: 70%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
