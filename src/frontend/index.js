@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import {createStore, compose} from 'redux';
+import { Router } from 'react-router'
+import {createBrowserHistory} from 'history'
 import reducer from './reducers/index';
 import App from './routes/App';
 
-
+const history = createBrowserHistory()
 const initialState = {
     "user": {},
     "playing": {},
@@ -171,14 +173,15 @@ const initialState = {
     }
     ]
 }
-
 const composeEnhancers = window.__REDUX__DEVTOOLS_EXTENSION__ || compose;
   
 const store = createStore(reducer, initialState, composeEnhancers);
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Router history = {history}>
+            <App />
+        </Router>
     </Provider>
     ,document.getElementById('app')
     );
