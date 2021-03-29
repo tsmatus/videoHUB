@@ -1,17 +1,18 @@
-import React from 'react'
-import '../assets/styles/components/Search.scss'
-import classNames from 'classnames'
+import React from 'react';
+import '../assets/styles/components/Search.scss';
+import classNames from 'classnames';
 
-const Search = ({isHome}) => {
+const Search = ({ isHome }) => {
   const inputStyles = classNames('input', {
-    isHome
-  })
+    isHome,
+  });
 
-  return(
-    <section className="main">
-      <h2 className="main__title">¿Qué quieres ver hoy?</h2>
-      <input type="text" className={inputStyles} placeholder="Buscar..."></input>
+  return (
+    <section className='main'>
+      <h2 className='main__title'>¿Qué quieres ver hoy?</h2>
+      <input type='text' className={inputStyles} placeholder='Buscar...' />
     </section>
-)}
+  );
+};
 
-export default Search
+export default Search;

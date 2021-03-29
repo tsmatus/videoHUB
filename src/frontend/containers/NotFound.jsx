@@ -1,10 +1,10 @@
 import React from 'react';
 
 const NotFound = () => (
-    <>
-        <h1>No Encontrado</h1>
-        <h2>Regresa Al Home</h2>
-    </>
-)
+  <>
+    <h1>No Encontrado</h1>
+    <h2>Regresa Al Home</h2>
+  </>
+);
 
-export default NotFound
+export default NotFound;
