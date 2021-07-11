@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';
-import { loginRequest } from '../actions';
+import { loginUser } from '../actions';
 import Header from '../components/Header';
 
 const Login = (props) => {
@@ -19,9 +19,9 @@ const Login = (props) => {
   };
 
   const handleSubmit = (event) => {
+    console.log(event)
     event.preventDefault();
-    props.loginRequest(form);
-    props.history.push('/');
+    props.loginUser(form, '/');
   };
 
   return (
@@ -45,7 +45,7 @@ const Login = (props) => {
               placeholder='Contraseña'
               onChange={handleInput}
             />
-            <button className='button'>Iniciar Sesion</button>
+            <button className='button' type="submit">Iniciar Sesion</button>
             <div className='login__container--remember-me'>
               <label>
                 <input type='checkbox' name='' id='cbox1' value='checkbox' />
@@ -77,7 +77,7 @@ const Login = (props) => {
 };
 
 const mapDispatchToProps = {
-  loginRequest,
+  loginUser,
 
 };
 

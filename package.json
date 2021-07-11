@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack-cli --config webpack.config.js",
-    "dev": "nodemon src/server/index",
+    "build": "ENV=development webpack-cli --config webpack.config.js",
+    "dev": "DEBUG=app:* ENV=development nodemon src/server/index",
     "lint": "eslint src/frontend --ext .js --ext .jsx --fix"
   },
   "keywords": [],

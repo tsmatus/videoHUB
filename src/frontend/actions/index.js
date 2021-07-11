@@ -37,7 +37,7 @@ export const setError = payload => ({
 
 export const registerUser = (payload, redirectURL) => {
   return (dispatch) => {
-    axios.post('/auth/sign-in'. payload)
+    axios.post('/auth/sign-up', payload)
       .then(({data}) => dispatch(registerRequest(data)))
       .then(()=> {
         window.location.href = redirectURL;
@@ -45,5 +45,30 @@ export const registerUser = (payload, redirectURL) => {
       .catch(error => dispatch(setError(error)));
   };
 };
+
+export const loginUser = ({ email, password }, redirectURL) => {
+  console.log('working')
+  return (dispatch) => {
+    axios({
+      url: '/auth/sign-in',
+      method: 'post',
+      auth: {
+        username: email,
+        password
+      }
+    })
+    .then(({data}) => {
+      document.cookie = `email=${data.user.email}`;
+      document.cookie = `name=${data.user.name}`;
+      document.cookie = `id=${data.user.id}`;
+      document.cookie = `token=${data.user.token}`;
+      dispatch(loginRequest(data.user))
+    })
+    .then(()=> {
+      window.location.href = redirectURL;
+    })
+    .catch(error => dispatch(setError(error)));
+  }
+}
 
 

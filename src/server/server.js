@@ -19,7 +19,11 @@ import reducer from '../frontend/reducers';
 
 dotenv.config();
 
-const { ENV, PORT } = process.env;
+const THIRTY_DAYS_IN_SEC = 2592000;
+const TWO_HOURS_IN_SEC = 7200000;
+
+const { PORT } = process.env;
+const ENV = process.env.ENV;
 const app = express();
 
 app.use(express.json());
@@ -91,10 +95,10 @@ const renderApp = (req, res) => {
   res.send(setResponse(html, preloadesState));
 };
 
-app.post('/auth/sign-in', (req, res, next) => {
+app.post('/auth/sign-in', async (req, res, next) => {
   const { rememberMe } = req.body;
 
-  passport.authenticate('basic', (error, data) => {
+  passport.authenticate('basic', async (error, data) => {
     try {
       if (error || !data) {
         next(boom.unauthorized());
@@ -106,16 +110,16 @@ app.post('/auth/sign-in', (req, res, next) => {
 
         const { token, ...user } = data;
 
-        res.cookie('token', token, {
-          httpOnly: !config.dev,
-          secure: !config.dev,
+        await res.cookie('token', token, {
+          httpOnly: ! (ENV === 'development'),
+          secure: ! (ENV === 'developlment'),
           maxAge: rememberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC,
         });
 
         res.status(200).json(user);
       });
-    } catch (error) {
-      next(error);
+    } catch (err) {
+      next(err);
     }
   })(req, res, next);
 });

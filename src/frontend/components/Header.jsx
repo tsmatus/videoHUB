@@ -22,11 +22,6 @@ const Header = (props) => {
 
   return (
     <header className={headerClass}>
-
-      <Link to='/'>
-        <img className='header__img' src={logo} />
-      </Link>
-
       <div className='header__menu'>
         <div className='header__menu--profile'>
           {hasUser ?

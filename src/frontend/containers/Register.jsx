@@ -22,8 +22,6 @@ const Register = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     props.registerUser(form, '/login');
-    props.history.push('/');
-
   };
   return (
     <>
